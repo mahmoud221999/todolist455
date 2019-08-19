@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.projecttodolist">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_to_do_list"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/ic_to_do_list"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".taskdata"></activity>
+        <activity android:name=".splachscreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".fragment.low" />
+        <activity android:name=".fragment.mediam" />
+        <activity android:name=".fragment.high" />
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/task_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Task data"
+        android:textSize="35sp" />
+
+    <TextView
+        android:id="@+id/task_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/task_data"
+        android:layout_marginTop="10dp"
+        android:text="Task date"
+        android:textSize="35sp" />
+
+    <TextView
+        android:id="@+id/task_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="130dp"
+        android:layout_marginTop="30dp"
+        android:layout_toRightOf="@id/task_date"
+        android:text="Time"
+        android:textSize="35sp"
+        android:textColor="#797474"
+        />
+
+
+</RelativeLayout>

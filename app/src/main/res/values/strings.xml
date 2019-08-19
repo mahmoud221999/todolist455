@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">projecttodolist</string>
+
+    <string-array name="priority">
+        <item>high</item>
+        <item>mediam</item>
+        <item>low</item>
+
+    </string-array>
+
+</resources>
