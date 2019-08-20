@@ -13,12 +13,11 @@ import com.example.projecttodolist.R;
 
 public class mediam extends Fragment {
     View mediam;
-    private Object View;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View = inflater.inflate(R.layout.recycleview, container, false);
+        mediam = inflater.inflate(R.layout.recycleview, container, false);
         return mediam;
     }
 }

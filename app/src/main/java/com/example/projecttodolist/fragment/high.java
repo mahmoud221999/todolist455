@@ -13,12 +13,12 @@ import com.example.projecttodolist.R;
 
 public class high extends Fragment {
     View high;
-    private Object View;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View = inflater.inflate(R.layout.recycleview, container, false);
+        high = inflater.inflate(R.layout.recycleview, container, false);
         return high;
     }
+
 }
