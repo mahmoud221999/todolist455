@@ -41,6 +41,7 @@
             android:padding="20dp"
             ></DatePicker>
         <Button
+            android:id="@+id/addtask"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -48,7 +49,9 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/styleforbuttom"
             android:text="Add"
-            android:textSize="50dp" />
+            android:textSize="50dp"
+            android:onClick="addtask"
+            />
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>
 </LinearLayout>

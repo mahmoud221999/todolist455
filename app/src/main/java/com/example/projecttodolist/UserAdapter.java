@@ -22,9 +22,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.VH> {
         Adapter_list = adapter_list;
     }
 
-    public UserAdapter(UserModel model) {
 
-    }
 
     @NonNull
     @Override

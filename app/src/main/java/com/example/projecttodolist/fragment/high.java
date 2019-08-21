@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
@@ -23,6 +24,7 @@ import com.example.projecttodolist.Appdatabase;
 import com.example.projecttodolist.R;
 import com.example.projecttodolist.UserAdapter;
 import com.example.projecttodolist.UserModel;
+import com.example.projecttodolist.taskdata;
 
 import java.util.List;
 
@@ -34,9 +36,8 @@ public class high extends Fragment {
     TimePicker timePicker;
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
-    Adapter useradapter;
+    UserAdapter useradapter;
     DividerItemDecoration dividerItemDecoration;
-    private UserModel model;
 
 
     @Nullable
@@ -60,8 +61,7 @@ public class high extends Fragment {
         recyclerView.addItemDecoration(dividerItemDecoration);
 
         appdatabase = Room.databaseBuilder(getContext(), Appdatabase.class, "database").build();
-
-
+        new get().execute();
     }
 
     class get extends AsyncTask<Void, Void, List<UserModel>>
@@ -78,16 +78,20 @@ public class high extends Fragment {
         @Override
         protected void onPostExecute(List<UserModel> userModels)
         {
-           useradapter=new UserAdapter(UserModel);
+           useradapter=new UserAdapter(getContext(),userModels);
 
-           recyclerView.setAdapter((RecyclerView.Adapter) useradapter);
+           recyclerView.setAdapter( useradapter);
         }
     }
 
 
-    class insert extends AsyncTask<UserModel , Void, Void>
-    {
 
+
+
+
+  public  class insert extends AsyncTask<UserModel , Void, Void>
+
+    {
         @Override
         protected Void doInBackground(UserModel... userModels)
         {
@@ -97,6 +101,7 @@ public class high extends Fragment {
 
         @Override
         protected void onPostExecute(Void aVoid)
+
         {
             new get().execute();
         }
