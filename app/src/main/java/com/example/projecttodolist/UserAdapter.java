@@ -17,8 +17,13 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.VH> {
 
     List<UserModel> Adapter_list;
 
-    public UserAdapter(List<UserModel> adapter_list) {
-        this.Adapter_list = adapter_list;
+    public UserAdapter(Context adapter, List<UserModel> adapter_list) {
+        Adapter = adapter;
+        Adapter_list = adapter_list;
+    }
+
+    public UserAdapter(UserModel model) {
+
     }
 
     @NonNull
@@ -30,21 +35,17 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.VH> {
 
     @Override
     public void onBindViewHolder(@NonNull VH holder, int position) {
-        UserAdapter userAdapter = Adapter_list.get(position);
-        String time=((UserModel) userAdapter).getTime();
-        String date=((UserModel) userAdapter).getDate();
-        String id=((UserModel) userAdapter).getId();
-        String periority=((UserModel) userAdapter).getPeriority();
-        String data=((UserModel) userAdapter).getData();
+        UserModel userAdapter = Adapter_list.get(position);
+        String date=userAdapter.getDate();
+        String time=userAdapter.getTime();
+        String data=userAdapter.getData();
 
-        holder.time.setText(time);
-        holder.date.setText(date);
+
         holder.data.setText(data);
-
-
+        holder.date.setText(date);
+        holder.time.setText(time);
 
     }
-
     @Override
     public int getItemCount() {
         return Adapter_list.size();
@@ -60,8 +61,5 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.VH> {
             data = itemView.findViewById(R.id.task_data);
             time = itemView.findViewById(R.id.task_time);
         }
-
-
     }
-
 }

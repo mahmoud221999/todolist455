@@ -8,24 +8,25 @@ import androidx.room.PrimaryKey;
 @Entity
 public class UserModel {
     @PrimaryKey(autoGenerate = true)
-    public String id;
+    public int id;
     @ColumnInfo(name = "date")
     private String date;
     @ColumnInfo(name = "time")
     private String time;
     @ColumnInfo(name = "periority")
-    private String periority;
+    private int periority;
     @ColumnInfo(name = "data")
     private String data;
 
-    public UserModel(String date, String time, String periority, String data) {
+    public UserModel(String date, String time, int periority, String data) {
         this.date = date;
         this.time = time;
         this.periority = periority;
         this.data = data;
     }
 
-    public UserModel(String id, String date, String time, String periority, String data) {
+@Ignore
+    public UserModel(int id, String date, String time, int periority, String data) {
         this.id = id;
         this.date = date;
         this.time = time;
@@ -33,11 +34,11 @@ public class UserModel {
         this.data = data;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -57,11 +58,11 @@ public class UserModel {
         this.time = time;
     }
 
-    public String getPeriority() {
+    public int getPeriority() {
         return periority;
     }
 
-    public void setPeriority(String periority) {
+    public void setPeriority(int periority) {
         this.periority = periority;
     }
 
