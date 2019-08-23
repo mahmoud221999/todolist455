@@ -16,8 +16,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Delete;
 import androidx.room.Room;
 
 import com.example.projecttodolist.Appdatabase;
@@ -39,13 +41,16 @@ public class high extends Fragment {
     UserAdapter useradapter;
     DividerItemDecoration dividerItemDecoration;
 
+    @Override
+    public void onAttachFragment(Fragment childFragment) {
+        new get().execute();
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        high = inflater.inflate(R.layout.recycleview, container, false);
+        high = inflater.inflate(R.layout.high, container, false);
         return high;
-
     }
 
     @Override
@@ -62,6 +67,19 @@ public class high extends Fragment {
 
         appdatabase = Room.databaseBuilder(getContext(), Appdatabase.class, "database").build();
         new get().execute();
+
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                new deletedata ().execute(useradapter.getTaskAt(viewHolder.getAdapterPosition()));
+
+            }
+        }).attachToRecyclerView(recyclerView);
     }
 
     class get extends AsyncTask<Void, Void, List<UserModel>>
@@ -71,7 +89,7 @@ public class high extends Fragment {
         @Override
         protected List<UserModel> doInBackground(Void... voids)
         {
-            uu = appdatabase.userDao().getAll();
+            uu = appdatabase.userDao().getHigh();
             return uu;
         }
 
@@ -82,39 +100,21 @@ public class high extends Fragment {
 
            recyclerView.setAdapter( useradapter);
         }
+
+
     }
+    public class deletedata extends AsyncTask<UserModel, Void,List<UserModel>>{
 
-
-
-
-
-
-  public  class insert extends AsyncTask<UserModel , Void, Void>
-
-    {
         @Override
-        protected Void doInBackground(UserModel... userModels)
-        {
-            appdatabase.userDao().insert(userModels);
-            return null;
+        protected List<UserModel> doInBackground(UserModel... userModels) {
+            appdatabase.userDao().delete(userModels[0]);
+            return appdatabase.userDao().getHigh();
         }
 
         @Override
-        protected void onPostExecute(Void aVoid)
-
-        {
-            new get().execute();
+        protected void onPostExecute(List<UserModel> userModels) {
+            useradapter = new UserAdapter(getContext(),userModels);
+            recyclerView.setAdapter(useradapter);
         }
     }
-
-
-
-
-
-
-
-
-
-
-
 }

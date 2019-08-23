@@ -5,53 +5,59 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".taskdata">
-<androidx.core.widget.NestedScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <LinearLayout
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <EditText
-            android:id="@+id/taskdata"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Task data"
-            android:textColor="#000"
-            android:textSize="35sp" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <Spinner
-            android:id="@+id/spinner_pr"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:entries="@array/priority"
-            ></Spinner>
+            <EditText
+                android:id="@+id/taskdata"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Task data"
+                android:textColor="#000"
+                android:textSize="35sp" />
 
-        <TimePicker
-            android:id="@+id/time"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            ></TimePicker>
-        <DatePicker
-            android:id="@+id/date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:padding="20dp"
-            ></DatePicker>
-        <Button
-            android:id="@+id/addtask"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/styleforbuttom"
-            android:text="Add"
-            android:textSize="50dp"
-            android:onClick="addtask"
-            />
-    </LinearLayout>
-</androidx.core.widget.NestedScrollView>
+            <Spinner
+                android:id="@+id/spinner_pr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </Spinner>
+
+            <TimePicker
+                android:id="@+id/time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:timePickerMode="spinner">
+
+            </TimePicker>
+
+            <DatePicker
+                android:id="@+id/date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:datePickerMode="spinner"
+                android:padding="20dp">
+
+            </DatePicker>
+
+            <Button
+                android:id="@+id/addtask"
+                android:layout_width="250dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/styleforbuttom"
+                android:text="Add"
+                android:textSize="50dp" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 </LinearLayout>

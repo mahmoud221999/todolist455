@@ -13,8 +13,12 @@ public interface UserDao {
     @Insert
     Void insert(UserModel... UserModels);
 
-    @Query("SELECT*FROM UserModel")
-    List<UserModel> getAll();
+    @Query("SELECT*FROM UserModel WHERE periority==0")
+    List<UserModel> getHigh();
+    @Query("SELECT*FROM UserModel WHERE periority==1")
+    List<UserModel> getMediam();
+    @Query("SELECT*FROM UserModel WHERE periority==2")
+    List<UserModel> getLow();
 
     @Update
     void update(UserModel UserModel);

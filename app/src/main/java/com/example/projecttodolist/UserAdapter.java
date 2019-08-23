@@ -23,7 +23,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.VH> {
     }
 
 
-
     @NonNull
     @Override
     public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -34,15 +33,26 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.VH> {
     @Override
     public void onBindViewHolder(@NonNull VH holder, int position) {
         UserModel userAdapter = Adapter_list.get(position);
-        String date=userAdapter.getDate();
-        String time=userAdapter.getTime();
-        String data=userAdapter.getData();
-
-
+        String date = userAdapter.getDate();
+        String time = userAdapter.getTime();
+        String data = userAdapter.getData();
+        int periority = userAdapter.getPeriority();
+        if (periority == 0) {
+            holder.time.setTextColor(Adapter.getResources().getColor(R.color.colorPrimary));
+        }
+        if (periority == 1) {
+            holder.time.setTextColor(Adapter.getResources().getColor(R.color.colorAccent));
+        }
+        if (periority == 2) {
+            holder.time.setTextColor(Adapter.getResources().getColor(R.color.colorPrimaryDark));
+        }
         holder.data.setText(data);
         holder.date.setText(date);
         holder.time.setText(time);
 
+    }
+    public UserModel getTaskAt(int position){
+        return Adapter_list.get(position);
     }
     @Override
     public int getItemCount() {
