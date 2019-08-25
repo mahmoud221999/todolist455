@@ -34,7 +34,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.VH> {
 
     @Override
     public void onBindViewHolder(@NonNull VH holder, int position) {
-        UserModel userAdapter = Adapter_list.get(position);
+        final UserModel userAdapter = Adapter_list.get(position);
         String date = userAdapter.getDate();
         String time = userAdapter.getTime();
         String data = userAdapter.getData();
@@ -54,7 +54,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.VH> {
         holder.updateclick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(),taskdata.class);
+                Intent intent = new Intent(view.getContext(),update.class);
+                intent.putExtra("id",userAdapter.getId());
                 view.getContext().startActivity(intent);
 
 

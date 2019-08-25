@@ -2,7 +2,6 @@ package com.example.projecttodolist;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import android.content.Intent;
@@ -20,11 +19,6 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.example.projecttodolist.fragment.high;
-
-import java.text.BreakIterator;
-import java.util.List;
-
 public class update extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Appdatabase appdatabase;
     Button update;
@@ -32,7 +26,6 @@ public class update extends AppCompatActivity implements AdapterView.OnItemSelec
     TimePicker timePicker;
     DatePicker datePicker;
     Spinner spinner;
-    com.example.projecttodolist.fragment.high high;
     TextView tasl_data;
     String[] periority = {"High", "Mediam", "Low"};
 
@@ -101,8 +94,9 @@ public class update extends AppCompatActivity implements AdapterView.OnItemSelec
 
 
 //finally
-                UserModel userModel = new UserModel(day + ":" + month + ":" + year, hour + ":" + minutes, pr, data);
-                new update().execute(userModel);
+                int id=getIntent().getIntExtra("id",0);
+                UserModel userModel = new UserModel(id,day + ":" + month + ":" + year, hour + ":" + minutes, pr, data);
+                new updatetask().execute(userModel);
                 taskdata.setText("");
                 timePicker.setCurrentHour(Integer.valueOf(hour));
                 timePicker.setCurrentMinute(Integer.valueOf(minutes));
@@ -136,11 +130,11 @@ public class update extends AppCompatActivity implements AdapterView.OnItemSelec
     }
 
 
-    public class update extends AsyncTask<UserModel, Void, List<UserModel>>
+    public class updatetask extends AsyncTask<UserModel, Void, Void>
     {
 
         @Override
-        protected List<UserModel> doInBackground(UserModel... userModels) {
+        protected Void doInBackground(UserModel... userModels) {
             appdatabase.userDao().update(userModels[0]);
             return null;
         }
