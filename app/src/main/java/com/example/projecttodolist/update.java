@@ -1,5 +1,10 @@
 package com.example.projecttodolist;
 
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
+
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -15,38 +20,33 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
-
 import com.example.projecttodolist.fragment.high;
 
+import java.text.BreakIterator;
 import java.util.List;
 
-public class taskdata extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class update extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Appdatabase appdatabase;
-    Button addtask;
+    Button update;
     EditText taskdata;
     TimePicker timePicker;
     DatePicker datePicker;
     Spinner spinner;
-    high high;
+    com.example.projecttodolist.fragment.high high;
     TextView tasl_data;
     String[] periority = {"High", "Mediam", "Low"};
-    RecyclerView recyclerView;
-    UserAdapter userAdapter;
+
     int pr = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_taskdata);
-        addtask = findViewById(R.id.addtask);
-        taskdata = findViewById(R.id.taskdata);
-        timePicker = findViewById(R.id.time);
-        datePicker = findViewById(R.id.date);
-        spinner = findViewById(R.id.spinner_pr);
+        setContentView(R.layout.activity_update);
+        update = findViewById(R.id.update_data);
+        taskdata = findViewById(R.id.taskdata_update);
+        timePicker = findViewById(R.id.time_update);
+        datePicker = findViewById(R.id.date_update);
+        spinner = findViewById(R.id.spinner_pr_update);
         tasl_data = findViewById(R.id.task_data);
         appdatabase = Room.databaseBuilder(getApplicationContext(), Appdatabase.class, "database").build();
 
@@ -68,7 +68,7 @@ public class taskdata extends AppCompatActivity implements AdapterView.OnItemSel
 
 
         //add task
-        addtask.setOnClickListener(new View.OnClickListener() {
+        update.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View view) {
@@ -102,7 +102,7 @@ public class taskdata extends AppCompatActivity implements AdapterView.OnItemSel
 
 //finally
                 UserModel userModel = new UserModel(day + ":" + month + ":" + year, hour + ":" + minutes, pr, data);
-                new insert().execute(userModel);
+                new update().execute(userModel);
                 taskdata.setText("");
                 timePicker.setCurrentHour(Integer.valueOf(hour));
                 timePicker.setCurrentMinute(Integer.valueOf(minutes));
@@ -113,6 +113,7 @@ public class taskdata extends AppCompatActivity implements AdapterView.OnItemSel
 
             }
         });
+
     }
 
     @Override
@@ -134,15 +135,14 @@ public class taskdata extends AppCompatActivity implements AdapterView.OnItemSel
 
     }
 
-    public class insert extends AsyncTask<UserModel, Void, Void> {
-        @Override
-        protected Void doInBackground(UserModel... userModels) {
-            appdatabase.userDao().insert(userModels);
 
+    public class update extends AsyncTask<UserModel, Void, List<UserModel>>
+    {
+
+        @Override
+        protected List<UserModel> doInBackground(UserModel... userModels) {
+            appdatabase.userDao().update(userModels[0]);
             return null;
         }
     }
-
-
 }
-

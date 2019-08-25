@@ -19,7 +19,6 @@ public interface UserDao {
     List<UserModel> getMediam();
     @Query("SELECT*FROM UserModel WHERE periority==2")
     List<UserModel> getLow();
-
     @Update
     void update(UserModel UserModel);
 

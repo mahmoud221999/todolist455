@@ -1,9 +1,11 @@
 package com.example.projecttodolist;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -49,6 +51,16 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.VH> {
         holder.data.setText(data);
         holder.date.setText(date);
         holder.time.setText(time);
+        holder.updateclick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(),taskdata.class);
+                view.getContext().startActivity(intent);
+
+
+
+            }
+        });
 
     }
     public UserModel getTaskAt(int position){
@@ -61,6 +73,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.VH> {
 
     public class VH extends RecyclerView.ViewHolder {
         TextView date, data, time;
+        LinearLayout updateclick;
 
         public VH(@NonNull View itemView) {
             super(itemView);
@@ -68,6 +81,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.VH> {
             date = itemView.findViewById(R.id.task_date);
             data = itemView.findViewById(R.id.task_data);
             time = itemView.findViewById(R.id.task_time);
+            updateclick=itemView.findViewById(R.id.updateclick);
         }
     }
 }
